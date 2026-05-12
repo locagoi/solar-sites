@@ -42,7 +42,7 @@ Dachpacht Direkt ist eine eigenständige Marke der CegTec GmbH (Hamburg). Schwes
 
 ## Schlüssel-Seiten
 
-- [Startseite — Vorteile, Ablauf, Anfrageformular](https://dachpacht-direkt.de/)
+- [Startseite — Vorteile, Ablauf, Anfrageformular](https://dachpacht-direkt.de/dachflaeche) (Root `/` leitet hierher weiter)
 - [Impressum](https://dachpacht-direkt.de/impressum)
 - [Datenschutzerklärung](https://dachpacht-direkt.de/datenschutz)
 

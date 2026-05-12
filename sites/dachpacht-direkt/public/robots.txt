@@ -28,3 +28,4 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://dachpacht-direkt.de/sitemap-index.xml
+Sitemap: https://dachpacht-direkt.de/sitemap-0.xml
