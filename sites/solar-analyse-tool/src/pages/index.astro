@@ -1,0 +1,311 @@
+---
+import BaseLayout from "@solar/ui/layouts/BaseLayout.astro";
+import Navbar from "@solar/ui/components/Navbar.astro";
+import Hero from "@solar/ui/components/Hero.astro";
+import Section from "@solar/ui/components/Section.astro";
+import FeatureGrid from "@solar/ui/components/FeatureGrid.astro";
+import BenefitsGrid from "@solar/ui/components/BenefitsGrid.astro";
+import HowItWorks from "@solar/ui/components/HowItWorks.astro";
+import PricingTable from "@solar/ui/components/PricingTable.astro";
+import Faq from "@solar/ui/components/Faq.astro";
+import FinalCta from "@solar/ui/components/FinalCta.astro";
+import SisterLink from "@solar/ui/components/SisterLink.astro";
+import Footer from "@solar/ui/components/Footer.astro";
+import { brand } from "../config/brand";
+
+const title = "Solar Match Widget — Solar-Lead-Widget für PV-Unternehmen";
+const description =
+  "Solar Match Widget: KI-gestütztes Solar-Analyse-Widget für PV-Betriebe. Einbetten, qualifizierte Leads gewinnen, Kunden begeistern. Kostenlos starten.";
+
+const navLinks = [
+  { label: "Features", href: "#features" },
+  { label: "Vorteile", href: "#vorteile" },
+  { label: "So funktioniert's", href: "#how-it-works" },
+  { label: "Preise", href: "#preise" },
+];
+
+// Iconography uses lucide-style stroke SVGs (d-attribute kept short for inline rendering)
+const features = [
+  {
+    iconPath: "M16 18 22 12 16 6 M8 6 2 12 8 18",
+    title: "Einfache Widget-Integration",
+    description:
+      "Einen Iframe-Code kopieren, auf Ihrer Website einfügen — fertig. Keine Entwickler nötig, in unter 5 Minuten live.",
+  },
+  {
+    iconPath: "M12 2v8 M5 12a7 7 0 1 0 14 0 M12 22v-4",
+    title: "Eigenes Branding (Pro)",
+    description:
+      "Logo, Farben, Unternehmensname — das Analyse-Widget sieht aus wie Ihr eigenes Produkt. Kein Solar-Match-Badge.",
+  },
+  {
+    iconPath: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z",
+    title: "Lead-Dashboard",
+    description:
+      "Alle Anfragen zentral im Blick. Kontaktdaten, Adresse, Dachanalyse-Ergebnisse — direkt einsehbar und exportierbar.",
+  },
+  {
+    iconPath: "M12 2a3 3 0 0 0-3 3v6.5a3.5 3.5 0 1 0 6 0V5a3 3 0 0 0-3-3z M9 9H6 M18 9h-3",
+    title: "KI-Dach-Analyse & PDF",
+    description:
+      "Ihre Interessenten erhalten automatisch eine professionelle PDF-Dach-Analyse — in Ihrer CI, mit Ihrer Kontaktadresse.",
+  },
+  {
+    iconPath: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
+    title: "Satelliten-Dachanalyse",
+    description:
+      "Dachfläche, Neigung, Ausrichtung und Sonnenstunden werden automatisch per Satellit berechnet — für jede Adresse in Deutschland.",
+  },
+];
+
+const benefits = [
+  {
+    title: "Mehr Abschlüsse",
+    description:
+      "Jeder Lead hat bereits eine persönliche Dachanalyse durchgeführt — echtes Kaufinteresse statt kalter Kontakte. Ihre Abschlussrate steigt messbar.",
+    stat: "+35%",
+    statLabel: "Conversion",
+  },
+  {
+    title: "Zufriedenere Kunden",
+    description:
+      "Interessenten erhalten vorab eine professionelle PDF-Dach-Analyse in Ihrem Design. Das schafft Vertrauen und einen überzeugenden ersten Eindruck.",
+    stat: "100%",
+    statLabel: "White-Label",
+  },
+  {
+    title: "Weniger Aufwand",
+    description:
+      "Keine manuellen Dach-Bewertungen mehr für die Ersteinschätzung. Das Widget qualifiziert Leads automatisch vor — Sie sprechen nur noch mit ernsthaften Interessenten.",
+    stat: "80%",
+    statLabel: "Zeitersparnis",
+  },
+  {
+    title: "Professioneller Auftritt",
+    description:
+      "Heben Sie sich vom Wettbewerb ab: Ihr eigenes Analyse-Tool auf Ihrer Website, mit KI-Dach-Analyse und Satellitendaten — als wäre es Ihre eigene Software.",
+    stat: "24/7",
+    statLabel: "verfügbar",
+  },
+];
+
+const steps = [
+  {
+    number: "1",
+    title: "Kostenlos registrieren",
+    description:
+      "Account anlegen, Unternehmensprofil einrichten — in unter 2 Minuten. Keine Kreditkarte, kein Risiko.",
+  },
+  {
+    number: "2",
+    title: "Widget einbetten",
+    description:
+      "Iframe-Code kopieren und auf Ihrer Website einfügen. Das Tool ist sofort live — auf Ihrer Domain, in Ihrem Design.",
+  },
+  {
+    number: "3",
+    title: "Leads empfangen",
+    description:
+      "Interessenten nutzen das Tool, geben Kontaktdaten ein — Sie sehen jeden neuen Lead sofort im Dashboard.",
+  },
+];
+
+const pricingTiers = [
+  {
+    name: "Free",
+    price: "€0",
+    description: "Perfekt zum Testen",
+    cta: { label: "Kostenlos starten", href: "https://app.solar-match.de/auth?plan=free" },
+    features: [
+      { text: "1 Formular", included: true },
+      { text: "5 Leads / Monat", included: true },
+      { text: "Satellitengestützte Analyse", included: true },
+      { text: "Lead-Dashboard", included: true },
+      { text: "Solar-Match-Badge sichtbar", included: true },
+      { text: "Eigenes Branding", included: false },
+      { text: "KI-Dach-Analyse", included: false },
+      { text: "PDF-Report", included: false },
+      { text: "Unbegrenzte Formulare", included: false },
+      { text: "Unbegrenzte Leads", included: false },
+    ],
+  },
+  {
+    name: "Pro",
+    price: "€149",
+    period: "/ Monat",
+    description: "Für wachsende Solarbetriebe",
+    highlighted: true,
+    cta: { label: "Jetzt upgraden", href: "https://app.solar-match.de/auth?plan=pro" },
+    features: [
+      { text: "Unbegrenzte Formulare", included: true },
+      { text: "Unbegrenzte Leads", included: true },
+      { text: "Satellitengestützte Analyse", included: true },
+      { text: "Lead-Dashboard", included: true },
+      { text: "Eigenes Branding", included: true },
+      { text: "KI-Dach-Analyse", included: true },
+      { text: "PDF-Report", included: true },
+      { text: "Kein Solar-Match-Badge", included: true },
+      { text: "Prioritäts-Support", included: true },
+      { text: "CSV-Export", included: true },
+    ],
+  },
+];
+
+const faqItems = [
+  {
+    question: "Was ist Solar Match Widget genau?",
+    answer:
+      "Solar Match Widget ist ein White-Label Solar-Analyse-Tool für PV-Unternehmen. Sie betten es auf Ihrer Website ein — Ihre Interessenten geben ihre Adresse ein, erhalten eine KI-gestützte Dachanalyse und eine PDF-Dach-Analyse, und Sie erhalten die Kontaktdaten direkt ins Dashboard.",
+  },
+  {
+    question: "Wie binde ich das Widget ein?",
+    answer:
+      "Nach der Registrierung erhalten Sie einen Iframe-Code, den Sie einfach in Ihre Website einfügen. Das Tool ist sofort aktiv — keine Entwickler nötig, unter 5 Minuten Aufwand.",
+  },
+  {
+    question: "Was beinhaltet der Free-Plan?",
+    answer:
+      "Der Free-Plan umfasst 1 Formular und 5 Leads pro Monat, Satelliten-Dachanalyse und ein Lead-Dashboard. Das Solar-Match-Badge ist sichtbar. Keine Kreditkarte nötig — einfach registrieren und starten.",
+  },
+  {
+    question: "Was ist im Pro-Plan enthalten?",
+    answer:
+      "Pro beinhaltet unbegrenzte Formulare und Leads, eigenes Branding (kein Solar-Match-Badge), KI-Dach-Analyse, PDF-Report im Unternehmens-CI, CSV-Export und Prioritäts-Support — für €149/Monat, jederzeit kündbar.",
+  },
+  {
+    question: "Wie qualifiziert sind die Leads?",
+    answer:
+      "Jeder Lead hat bereits eine persönliche Dachanalyse durchgeführt und Kontaktdaten hinterlassen — echtes Kaufinteresse, kein Cold Traffic. Sie erhalten Adresse, Dachgröße, Ausrichtung und die Wirtschaftlichkeitsdaten direkt mit.",
+  },
+  {
+    question: "Werden Kundendaten DSGVO-konform verarbeitet?",
+    answer:
+      "Ja. Die Einwilligung zur Datenweitergabe wird beim Formular eingeholt. Alle Daten werden in der EU verarbeitet und nur an den jeweiligen Partner weitergegeben.",
+  },
+];
+
+const siteUrl = `https://${brand.domain}`;
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Solar Match Widget",
+    description,
+    brand: { "@type": "Brand", name: "Solar Match" },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free",
+        price: "0",
+        priceCurrency: "EUR",
+        url: `${siteUrl}/#preise`,
+        availability: "https://schema.org/InStock",
+      },
+      {
+        "@type": "Offer",
+        name: "Pro",
+        price: "149",
+        priceCurrency: "EUR",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "149",
+          priceCurrency: "EUR",
+          unitText: "MONTH",
+        },
+        url: `${siteUrl}/#preise`,
+        availability: "https://schema.org/InStock",
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+];
+
+const footerLinks = [
+  { label: "Solar Match Marktplatz", href: "https://solar-match.de", external: true },
+  { label: "Dachpacht Direkt", href: "https://dachpacht-direkt.de", external: true },
+  { label: "Impressum", href: "/impressum" },
+  { label: "Datenschutz", href: "/datenschutz" },
+];
+---
+
+<BaseLayout brand={brand} title={title} description={description} path="/" jsonLd={jsonLd}>
+  <Navbar
+    brand={brand}
+    links={navLinks}
+    secondaryCta={{ label: "Login", href: "https://app.solar-match.de/auth" }}
+    primaryCta={{ label: "Kostenlos starten", href: "https://app.solar-match.de/auth" }}
+  />
+
+  <main id="main">
+    <Hero
+      badge="Für PV-Unternehmen & Solarinstallateure"
+      headingLead="Mehr qualifizierte"
+      headingAccent="Solar-Leads."
+      headingTail="Automatisch."
+      subhead="Betten Sie das KI-gestützte Analyse-Widget auf Ihrer Website ein. Interessenten analysieren ihr Dach — Sie erhalten die Kontaktdaten direkt ins Dashboard."
+      primaryCta={{ label: "Kostenlos starten", href: "https://app.solar-match.de/auth" }}
+      secondaryCta={{ label: "Preise ansehen", href: "#preise" }}
+      trustPoints={["Free-Plan verfügbar", "Keine Kreditkarte nötig", "In 5 Min live"]}
+    />
+
+    <Section
+      id="features"
+      bg="subtle"
+      title="Was Solar Match Widget für Sie macht"
+    >
+      <FeatureGrid features={features} cols={3} />
+    </Section>
+
+    <Section
+      id="vorteile"
+      title="Ihr Wettbewerbsvorteil"
+      intro="PV-Unternehmen, die das Widget einsetzen, gewinnen nicht nur mehr Leads — sie schließen schneller ab und begeistern ihre Kunden schon vor dem ersten Gespräch."
+    >
+      <BenefitsGrid benefits={benefits} />
+    </Section>
+
+    <Section
+      id="how-it-works"
+      bg="subtle"
+      title="In 3 Schritten zu Ihren ersten Leads"
+      intro="Keine Entwickler, keine lange Einrichtung — in unter 5 Minuten live."
+    >
+      <HowItWorks steps={steps} />
+    </Section>
+
+    <Section
+      id="preise"
+      title="Preise"
+      intro="Sie sind Solarinstallateur? Integrieren Sie das Widget als White-Label und generieren Sie exklusive Leads."
+    >
+      <PricingTable tiers={pricingTiers} footnote="Keine Kreditkarte nötig. Jederzeit kündbar." />
+    </Section>
+
+    <Section title="Häufige Fragen">
+      <Faq items={faqItems} />
+    </Section>
+
+    <FinalCta
+      heading="Bereit für Ihre ersten Leads?"
+      subhead="Jetzt kostenlos registrieren und das Widget in wenigen Minuten auf Ihrer Website einbetten."
+      cta={{ label: "Kostenlos starten", href: "https://app.solar-match.de/auth" }}
+      trustPoints={["Free-Plan verfügbar", "In 5 Minuten live", "DSGVO-konform"]}
+    />
+
+    <SisterLink
+      intro="Sie möchten keine eigenen Leads generieren, sondern direkt qualifizierte Anfragen erhalten?"
+      description={`<strong>Solar Match Marktplatz</strong> liefert Ihnen fertig qualifizierte Solar-Leads, ohne eigenes Widget.`}
+      cta={{ label: "Marktplatz ansehen", href: "https://solar-match.de" }}
+    />
+  </main>
+
+  <Footer brand={brand} links={footerLinks} />
+</BaseLayout>

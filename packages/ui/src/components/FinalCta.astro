@@ -1,0 +1,45 @@
+---
+export interface Props {
+  heading: string;
+  subhead: string;
+  cta: { label: string; href: string };
+  trustPoints?: string[];
+}
+
+const { heading, subhead, cta, trustPoints = [] } = Astro.props;
+---
+
+<section class="gradient-hero py-16 text-white md:py-20" aria-labelledby="final-cta-heading">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 text-[color:var(--color-accent)]" aria-hidden="true">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+    <h2 id="final-cta-heading" class="mb-3 text-3xl font-bold md:text-4xl">
+      {heading}
+    </h2>
+    <p class="mx-auto mb-6 max-w-xl text-lg text-white/80">{subhead}</p>
+    <a
+      href={cta.href}
+      class="inline-flex items-center rounded-md bg-[color:var(--color-accent)] px-6 py-3 text-base font-semibold text-[color:var(--color-accent-foreground)] shadow-lg transition-colors hover:bg-[color:var(--color-accent-hover)]"
+    >
+      {cta.label}
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2" aria-hidden="true">
+        <line x1="5" y1="12" x2="19" y2="12" />
+        <polyline points="12 5 19 12 12 19" />
+      </svg>
+    </a>
+    {trustPoints.length > 0 && (
+      <ul class="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/70">
+        {trustPoints.map((p) => (
+          <li class="flex items-center gap-1.5">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[color:var(--color-accent)]" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            {p}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>

@@ -1,0 +1,131 @@
+---
+import type { Brand } from "../brand";
+
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+export interface Props {
+  brand: Brand;
+  links?: NavLink[];
+  /** Primary CTA shown in the navbar */
+  primaryCta?: { label: string; href: string };
+  /** Secondary CTA (e.g. Login) */
+  secondaryCta?: { label: string; href: string };
+}
+
+const { brand, links = [], primaryCta, secondaryCta } = Astro.props;
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-[color:var(--color-border)] bg-white/80 backdrop-blur-md"
+>
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+    <a href="/" class="flex items-center gap-2" aria-label={`${brand.name} Startseite`}>
+      <img src="/solar-logo.svg" alt="" width="28" height="28" class="h-7 w-7" />
+      <span class="text-lg font-bold text-[color:var(--color-primary-dark)]">
+        {brand.name}
+      </span>
+      {brand.subtitle && (
+        <span
+          class="ml-1 rounded-full border border-[color:var(--color-border)] px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-[color:var(--color-muted-foreground)]"
+        >
+          {brand.subtitle}
+        </span>
+      )}
+    </a>
+
+    {links.length > 0 && (
+      <nav
+        class="hidden items-center gap-6 text-sm font-medium text-[color:var(--color-muted-foreground)] sm:flex"
+        aria-label="Hauptnavigation"
+      >
+        {links.map((link) => (
+          <a href={link.href} class="transition-colors hover:text-[color:var(--color-foreground)]">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    )}
+
+    <div class="flex items-center gap-2">
+      {secondaryCta && (
+        <a
+          href={secondaryCta.href}
+          class="hidden rounded-md border border-[color:var(--color-border)] px-3 py-1.5 text-sm font-medium text-[color:var(--color-foreground)] transition-colors hover:bg-[color:var(--color-muted)] sm:inline-flex"
+        >
+          {secondaryCta.label}
+        </a>
+      )}
+      {primaryCta && (
+        <a
+          href={primaryCta.href}
+          class="inline-flex items-center rounded-md bg-[color:var(--color-accent)] px-3 py-1.5 text-sm font-semibold text-[color:var(--color-accent-foreground)] shadow-sm transition-colors hover:bg-[color:var(--color-accent-hover)]"
+        >
+          {primaryCta.label}
+        </a>
+      )}
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Menü öffnen"
+        class="rounded-md p-2 transition-colors hover:bg-[color:var(--color-muted)] sm:hidden"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {links.length > 0 && (
+    <div
+      id="mobile-menu"
+      hidden
+      class="border-t border-[color:var(--color-border)] bg-white sm:hidden"
+    >
+      <nav class="flex flex-col gap-4 px-6 py-4 text-sm font-medium" aria-label="Mobile Navigation">
+        {links.map((link) => (
+          <a href={link.href} class="text-[color:var(--color-muted-foreground)] transition-colors hover:text-[color:var(--color-foreground)]">
+            {link.label}
+          </a>
+        ))}
+        {secondaryCta && (
+          <a
+            href={secondaryCta.href}
+            class="rounded-md border border-[color:var(--color-border)] px-3 py-2 text-center font-medium"
+          >
+            {secondaryCta.label}
+          </a>
+        )}
+        {primaryCta && (
+          <a
+            href={primaryCta.href}
+            class="rounded-md bg-[color:var(--color-accent)] px-3 py-2 text-center font-semibold text-[color:var(--color-accent-foreground)]"
+          >
+            {primaryCta.label}
+          </a>
+        )}
+      </nav>
+    </div>
+  )}
+</header>
+
+<script>
+  // Tiny no-framework mobile menu toggle — keeps the navbar zero-JS-island for crawlers
+  const btn = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  if (btn && menu) {
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!isOpen));
+      btn.setAttribute("aria-label", isOpen ? "Menü öffnen" : "Menü schließen");
+      menu.hidden = isOpen;
+    });
+  }
+</script>

@@ -1,0 +1,39 @@
+---
+export interface Feature {
+  /** Inline SVG path d-attribute, or icon name from lucide. Kept simple for zero-JS rendering. */
+  iconPath?: string;
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  features: Feature[];
+  /** 2 or 3 columns at lg breakpoint */
+  cols?: 2 | 3;
+}
+
+const { features, cols = 3 } = Astro.props;
+const gridCols = cols === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3";
+---
+
+<ul role="list" class={`grid gap-6 ${gridCols}`}>
+  {features.map((feature) => (
+    <li class="rounded-2xl border border-[color:var(--color-border)] bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[color:var(--color-accent)]/10">
+        {feature.iconPath ? (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[color:var(--color-accent)]" aria-hidden="true">
+            <path d={feature.iconPath} />
+          </svg>
+        ) : (
+          <span class="block h-3 w-3 rounded-full bg-[color:var(--color-accent)]" aria-hidden="true"></span>
+        )}
+      </div>
+      <h3 class="mb-2 text-lg font-semibold text-[color:var(--color-foreground)]">
+        {feature.title}
+      </h3>
+      <p class="text-sm leading-relaxed text-[color:var(--color-muted-foreground)]">
+        {feature.description}
+      </p>
+    </li>
+  ))}
+</ul>

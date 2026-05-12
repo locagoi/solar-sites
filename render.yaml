@@ -1,0 +1,89 @@
+# Render Blueprint — deploys all three solar sites as static sites from this monorepo.
+# Each service builds its workspace and serves the resulting dist/ folder.
+#
+# After this blueprint is created on Render:
+#   1. Point dachpacht-direkt.de → A record to the Render IP shown in the service settings
+#   2. Point solar-match.de → A record to the Render IP shown in the service settings
+#   3. Point www.solaranalysetool.com → CNAME to the Render hostname (apex solaranalysetool.com → A record)
+#
+# Render docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    runtime: static
+    name: dachpacht-direkt
+    plan: starter
+    rootDir: .
+    buildCommand: npm install && npm run build:dd
+    staticPublishPath: ./sites/dachpacht-direkt/dist
+    pullRequestPreviewsEnabled: true
+    domains:
+      - dachpacht-direkt.de
+      - www.dachpacht-direkt.de
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: geolocation=(), microphone=(), camera=()
+    routes:
+      - type: rewrite
+        source: /404
+        destination: /404.html
+
+  - type: web
+    runtime: static
+    name: solar-match
+    plan: starter
+    rootDir: .
+    buildCommand: npm install && npm run build:sm
+    staticPublishPath: ./sites/solar-match/dist
+    pullRequestPreviewsEnabled: true
+    domains:
+      - solar-match.de
+      - www.solar-match.de
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: geolocation=(), microphone=(), camera=()
+
+  - type: web
+    runtime: static
+    name: solar-analyse-tool
+    plan: starter
+    rootDir: .
+    buildCommand: npm install && npm run build:sat
+    staticPublishPath: ./sites/solar-analyse-tool/dist
+    pullRequestPreviewsEnabled: true
+    domains:
+      - www.solaranalysetool.com
+      - solaranalysetool.com
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: geolocation=(), microphone=(), camera=()

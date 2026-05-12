@@ -1,0 +1,74 @@
+---
+import LegalLayout from "@solar/ui/layouts/LegalLayout.astro";
+import { brand } from "../config/brand";
+
+const navLinks = [
+  { label: "So funktioniert's", href: "/#how-it-works" },
+  { label: "FAQ", href: "/#faq" },
+];
+const footerLinks = [
+  { label: "Solar Match Widget", href: "https://www.solaranalysetool.com", external: true },
+  { label: "Dachpacht Direkt", href: "https://dachpacht-direkt.de", external: true },
+  { label: "Impressum", href: "/impressum" },
+  { label: "Datenschutz", href: "/datenschutz" },
+];
+---
+
+<LegalLayout
+  brand={brand}
+  title="Impressum | Solar Match Marktplatz"
+  description="Impressum und rechtliche Informationen der CegTec GmbH — Solar Match Marktplatz."
+  path="/impressum"
+  navLinks={navLinks}
+  footerLinks={footerLinks}
+  primaryCta={{ label: "Kostenlos registrieren", href: "https://app.solar-match.de/auth" }}
+>
+  <h1>Impressum</h1>
+
+  <section>
+    <p><strong>Solar Match Marktplatz</strong></p>
+    <p>Eine Marke der CegTec GmbH</p>
+  </section>
+
+  <section>
+    <h2>Anbieter</h2>
+    <address>
+      <strong>CegTec GmbH</strong><br />
+      Immenhof 15<br />
+      22087 Hamburg<br />
+      Deutschland
+    </address>
+  </section>
+
+  <section>
+    <h2>Kontakt</h2>
+    <p>
+      E-Mail: <a href="mailto:moin@dachpacht-direkt.de">moin@dachpacht-direkt.de</a><br />
+      Telefon: <a href="tel:+494074304626">+49 40 74304626</a>
+    </p>
+  </section>
+
+  <section>
+    <h2>Vertreten durch</h2>
+    <p>Geschäftsführer: Luca Ceglie</p>
+  </section>
+
+  <section>
+    <h2>Registereintrag</h2>
+    <p>Handelsregister: HRB 184866<br />Registergericht: Amtsgericht Hamburg</p>
+  </section>
+
+  <section>
+    <h2>Umsatzsteuer-ID</h2>
+    <p>DE366099274</p>
+  </section>
+
+  <section>
+    <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+    <address>
+      Luca Ceglie<br />
+      Immenhof 15<br />
+      22087 Hamburg
+    </address>
+  </section>
+</LegalLayout>

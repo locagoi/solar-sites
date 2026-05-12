@@ -1,0 +1,20 @@
+{
+  "name": "@solar/ui",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Shared design tokens, Astro layouts and components, React islands. Consumed by sites/*.",
+  "exports": {
+    "./styles/tokens.css": "./src/styles/tokens.css",
+    "./layouts/*": "./src/layouts/*",
+    "./components/*": "./src/components/*",
+    "./islands/*": "./src/islands/*",
+    "./assets/*": "./src/assets/*",
+    "./brand": "./src/brand.ts"
+  },
+  "peerDependencies": {
+    "astro": "^5.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

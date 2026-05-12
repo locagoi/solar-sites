@@ -1,0 +1,238 @@
+---
+import BaseLayout from "@solar/ui/layouts/BaseLayout.astro";
+import Navbar from "@solar/ui/components/Navbar.astro";
+import Hero from "@solar/ui/components/Hero.astro";
+import Section from "@solar/ui/components/Section.astro";
+import FeatureGrid from "@solar/ui/components/FeatureGrid.astro";
+import BenefitsGrid from "@solar/ui/components/BenefitsGrid.astro";
+import HowItWorks from "@solar/ui/components/HowItWorks.astro";
+import Faq from "@solar/ui/components/Faq.astro";
+import FinalCta from "@solar/ui/components/FinalCta.astro";
+import SisterLink from "@solar/ui/components/SisterLink.astro";
+import Footer from "@solar/ui/components/Footer.astro";
+import { brand } from "../config/brand";
+
+const title = "Solar Match Marktplatz — Qualifizierte Solar-Leads kaufen";
+const description =
+  "Solar Match Marktplatz: geprüfte Gewerbedach-Anfragen mit Adresse, Dachdaten und Kontaktinfo. Pay-per-Lead, keine Abos. Direkt in Ihr Dashboard.";
+
+const navLinks = [
+  { label: "So funktioniert's", href: "#how-it-works" },
+  { label: "Leads", href: "#features" },
+  { label: "Vorteile", href: "#vorteile" },
+  { label: "FAQ", href: "#faq" },
+];
+
+const features = [
+  {
+    iconPath: "M9 11l3 3L22 4 M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11",
+    title: "Geprüfte Anfragen",
+    description:
+      "Jeder Lead wird mit AI-Score und Plausibilitätscheck bewertet — Sie sehen Größe, Standort und Realisierungswahrscheinlichkeit vor dem Kauf.",
+  },
+  {
+    iconPath: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z",
+    title: "Vollständige Kontaktdaten",
+    description:
+      "Nach dem Kauf erhalten Sie unverzüglich Adresse, Ansprechpartner, Telefon und E-Mail des Anfragenden — keine Wartezeit.",
+  },
+  {
+    iconPath: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
+    title: "Satellitengestützte Dachdaten",
+    description:
+      "Dachfläche in m², Neigung, Ausrichtung und potenzielle kWp werden auf Basis von Satellitendaten berechnet — bevor Sie kaufen.",
+  },
+  {
+    iconPath: "M1 4h22 M1 10h22 M5 16h14 M9 22h6",
+    title: "Regional filterbar",
+    description:
+      "Beschränken Sie Anfragen auf Ihr Vertriebsgebiet — nach PLZ, Bundesland oder Radius um Ihren Standort.",
+  },
+  {
+    iconPath: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
+    title: "Pay-per-Lead",
+    description:
+      "Kein Abo, keine Mindestabnahme — bezahlen Sie nur die Leads, die Sie wirklich kaufen. Stripe-Checkout, Rechnung inklusive.",
+  },
+];
+
+const benefits = [
+  {
+    title: "Hohe Abschlussquote",
+    description:
+      "Vorqualifizierte Gewerbedach-Anfragen mit klarer Investitionsabsicht — keine kalten Kontakte, keine 'nur mal informieren'-Leads.",
+    stat: "≥50",
+    statLabel: "AI-Score",
+  },
+  {
+    title: "Direkter Kontakt",
+    description:
+      "Sie kontaktieren den Anfragenden persönlich, nicht über uns. Keine Provision, keine Marge auf Ihre Aufträge.",
+    stat: "0%",
+    statLabel: "Provision",
+  },
+  {
+    title: "Skalierbar",
+    description:
+      "Buchen Sie so viele Leads wie Sie verarbeiten können — von einzelnen Anfragen bis zu mehreren pro Woche.",
+    stat: "Flex",
+    statLabel: "Volumen",
+  },
+  {
+    title: "DSGVO-konform",
+    description:
+      "Alle Anfragen mit ausdrücklicher Einwilligung zur Weitergabe. Datenverarbeitung in der EU.",
+    stat: "EU",
+    statLabel: "Datenhaltung",
+  },
+];
+
+const steps = [
+  {
+    number: "1",
+    title: "Registrieren & verifizieren",
+    description:
+      "Account anlegen, Unternehmen verifizieren — wir prüfen jedes Solar-Unternehmen vor Freischaltung. Dauert ca. 1 Werktag.",
+  },
+  {
+    number: "2",
+    title: "Leads filtern & kaufen",
+    description:
+      "Verfügbare Anfragen mit Vorschau (Region, Dachgröße, AI-Score) ansehen. Per Stripe sofort kaufen, voller Datensatz öffnet sich.",
+  },
+  {
+    number: "3",
+    title: "Direkt kontaktieren",
+    description:
+      "Kontaktdaten und vollständige Dachanalyse landen in Ihrem Dashboard. Sie kontaktieren den Interessenten ohne Umwege.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Was kostet ein Lead?",
+    answer:
+      "Der Preis pro Lead variiert je nach Region und Dachgröße. Sie sehen den Preis vor dem Kauf transparent. Es gibt keine Abos und keine Mindestabnahme — bezahlt wird nur, was gekauft wird.",
+  },
+  {
+    question: "Wie verifiziert ihr die Leads?",
+    answer:
+      "Jede Anfrage durchläuft eine Plausibilitätsprüfung: Adressabgleich, Satellitenanalyse des Dachs (Größe, Ausrichtung), Kontaktdaten-Validierung und ein AI-basierter Realisierungs-Score. Nur Anfragen mit AI-Score ≥50 und Dachfläche ≥20m² werden gelistet.",
+  },
+  {
+    question: "Was ist im Lead enthalten?",
+    answer:
+      "Sie erhalten: Adresse mit PLZ, Ansprechpartner, Telefon, E-Mail, Dachfläche in m², Neigung und Ausrichtung, geschätzte kWp-Kapazität, Sonnenstunden für die Lage und den AI-Realisierungs-Score.",
+  },
+  {
+    question: "Wer hat Zugriff auf einen Lead?",
+    answer:
+      "Jeder Lead wird in begrenzter Stückzahl verkauft. Sobald ein Lead 3× verkauft wurde, wird er aus dem Marktplatz entfernt. So bleibt Ihre Anfrage konkurrenzfähig.",
+  },
+  {
+    question: "Wo kommen die Leads her?",
+    answer:
+      "Die Anfragen werden überwiegend über unsere Schwesterseite Dachpacht Direkt gewonnen — Eigentümer von Gewerbedächern, die ihr Dach für PV-Anlagen anbieten möchten. Alle Anfragen erfolgen mit ausdrücklicher Einwilligung zur Weitergabe an Solar-Unternehmen.",
+  },
+  {
+    question: "Werden Kundendaten DSGVO-konform verarbeitet?",
+    answer:
+      "Ja. Die Einwilligung zur Datenweitergabe wird beim Anfrageformular eingeholt. Alle Daten werden in der EU verarbeitet und nur an freigeschaltete, verifizierte Solar-Unternehmen weitergegeben.",
+  },
+];
+
+const siteUrl = `https://${brand.domain}`;
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Solar Match Marktplatz",
+    description,
+    provider: { "@type": "Organization", name: "CegTec GmbH", url: siteUrl },
+    serviceType: "Solar lead marketplace for PV installers",
+    areaServed: { "@type": "Country", name: "Germany" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+];
+
+const footerLinks = [
+  { label: "Solar Match Widget", href: "https://www.solaranalysetool.com", external: true },
+  { label: "Dachpacht Direkt", href: "https://dachpacht-direkt.de", external: true },
+  { label: "Impressum", href: "/impressum" },
+  { label: "Datenschutz", href: "/datenschutz" },
+];
+---
+
+<BaseLayout brand={brand} title={title} description={description} path="/" jsonLd={jsonLd}>
+  <Navbar
+    brand={brand}
+    links={navLinks}
+    secondaryCta={{ label: "Login", href: "https://app.solar-match.de/login" }}
+    primaryCta={{ label: "Kostenlos registrieren", href: "https://app.solar-match.de/auth" }}
+  />
+
+  <main id="main">
+    <Hero
+      badge="Solar-Leads Marktplatz für PV-Installateure"
+      headingLead="Qualifizierte"
+      headingAccent="Solar-Leads."
+      headingTail="Sofort kaufbar."
+      subhead="Geprüfte Gewerbedach-Anfragen mit vollständigen Kontaktdaten und Satellitenanalyse — direkt in Ihr Dashboard. Pay-per-Lead, keine Abos."
+      primaryCta={{ label: "Leads ansehen", href: "https://app.solar-match.de/auth" }}
+      secondaryCta={{ label: "So funktioniert's", href: "#how-it-works" }}
+      trustPoints={["Keine Mindestabnahme", "DSGVO-konform", "Verifizierte Anbieter"]}
+    />
+
+    <Section
+      id="how-it-works"
+      bg="subtle"
+      title="In 3 Schritten zum nächsten Auftrag"
+      intro="Vom Account zur ersten Anfrage in unter einem Tag."
+    >
+      <HowItWorks steps={steps} />
+    </Section>
+
+    <Section
+      id="features"
+      title="Was Sie pro Lead bekommen"
+    >
+      <FeatureGrid features={features} cols={3} />
+    </Section>
+
+    <Section
+      id="vorteile"
+      bg="subtle"
+      title="Warum Solar Match Marktplatz"
+      intro="Wir verkaufen keine Abos, keine Pakete und keine versprochenen Lead-Mengen — nur einzelne, geprüfte Anfragen mit voller Transparenz."
+    >
+      <BenefitsGrid benefits={benefits} />
+    </Section>
+
+    <Section id="faq" title="Häufige Fragen">
+      <Faq items={faqItems} />
+    </Section>
+
+    <FinalCta
+      heading="Bereit für den nächsten Auftrag?"
+      subhead="Registrieren Sie sich kostenlos, verifizieren Sie Ihr Unternehmen und starten Sie den Kauf qualifizierter Solar-Leads."
+      cta={{ label: "Kostenlos registrieren", href: "https://app.solar-match.de/auth" }}
+      trustPoints={["Account in 2 Min", "Verifizierung am selben Tag", "Pay-per-Lead"]}
+    />
+
+    <SisterLink
+      intro="Sie möchten lieber eigene Leads von Ihrer Website generieren?"
+      description={`<strong>Solar Match Widget</strong> ist unser White-Label Analyse-Iframe, den Sie auf Ihrer eigenen Website einbetten — ab €0 kostenlos.`}
+      cta={{ label: "Widget ansehen", href: "https://www.solaranalysetool.com" }}
+    />
+  </main>
+
+  <Footer brand={brand} links={footerLinks} />
+</BaseLayout>

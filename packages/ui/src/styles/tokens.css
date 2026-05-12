@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  /* Petrol + Gold — Solar Analyse Tool design system */
+  --color-primary-dark: hsl(197 41% 20%);
+  --color-primary: hsl(197 35% 26%);
+  --color-primary-light: hsl(197 28% 33%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-accent: hsl(43 74% 60%);
+  --color-accent-hover: hsl(43 70% 53%);
+  --color-accent-foreground: hsl(197 41% 15%);
+
+  --color-foreground: hsl(197 41% 20%);
+  --color-muted-foreground: hsl(215 16% 50%);
+
+  --color-background: hsl(0 0% 100%);
+  --color-background-subtle: hsl(210 40% 98%);
+  --color-background-muted: hsl(210 20% 96%);
+
+  --color-border: hsl(210 20% 88%);
+  --color-muted: hsl(210 20% 96%);
+
+  --font-sans:
+    "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+
+  --radius: 0.75rem;
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5rem;
+
+  --shadow-glow-accent: 0 0 40px hsl(43 74% 60% / 0.3);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  /* Fluid section dividers */
+  section {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background-image: linear-gradient(
+      180deg,
+      hsl(197 41% 20%) 0%,
+      hsl(197 35% 26%) 100%
+    );
+  }
+
+  .gradient-accent {
+    background-image: linear-gradient(
+      135deg,
+      hsl(43 74% 60%),
+      hsl(43 70% 53%)
+    );
+  }
+
+  .shadow-glow-accent {
+    box-shadow: 0 0 40px hsl(43 74% 60% / 0.3);
+  }
+}

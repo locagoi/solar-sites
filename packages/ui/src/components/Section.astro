@@ -1,0 +1,42 @@
+---
+export interface Props {
+  id?: string;
+  title?: string;
+  intro?: string;
+  /** Background variant — "white" or "subtle" (light blue-grey) */
+  bg?: "white" | "subtle";
+  /** Heading level for the section title. Defaults to h2. */
+  as?: "h2" | "h3";
+  labelledBy?: string;
+}
+
+const { id, title, intro, bg = "white", as: HeadingTag = "h2", labelledBy } = Astro.props;
+const headingId = labelledBy ?? (id ? `${id}-heading` : undefined);
+const bgClass =
+  bg === "subtle" ? "bg-[color:var(--color-background-subtle)]" : "bg-white";
+---
+
+<section
+  id={id}
+  class={`py-14 md:py-20 ${bgClass}`}
+  aria-labelledby={headingId}
+>
+  <div class="mx-auto max-w-6xl px-6">
+    {title && (
+      <header class="mb-10 text-center">
+        <HeadingTag
+          id={headingId}
+          class="text-3xl font-bold text-[color:var(--color-foreground)] md:text-4xl"
+        >
+          {title}
+        </HeadingTag>
+        {intro && (
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-[color:var(--color-muted-foreground)]">
+            {intro}
+          </p>
+        )}
+      </header>
+    )}
+    <slot />
+  </div>
+</section>

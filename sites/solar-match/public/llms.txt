@@ -1,0 +1,56 @@
+# Solar Match Marktplatz
+
+> Solar-Lead Marktplatz für PV-Installateure und Solarbetriebe in Deutschland. Geprüfte Gewerbedach-Anfragen mit vollständigen Kontaktdaten, Satellitenanalyse und AI-Score — pay-per-Lead, ohne Abos. Direkt buchbar im Dashboard.
+
+Solar Match Marktplatz ist ein Produkt der Marke **Solar Match** (Betreiber: CegTec GmbH, Hamburg). Schwesterprodukt: [Solar Match Widget](https://www.solaranalysetool.com) (White-Label-Analyse-Iframe für die eigene Website).
+
+## Zielgruppe (ICP)
+
+- Verifizierte PV-Installateure und Solarbetriebe in DACH
+- Wer ohne Eigen-Traffic-Aufbau schnell qualifizierte Anfragen kaufen möchte
+- Wer Pay-per-Lead einem Lead-Abo oder Provisionsmodell vorzieht
+
+## So funktioniert der Marktplatz
+
+1. **Registrieren & verifizieren** — Account anlegen, Unternehmen wird in ca. einem Werktag verifiziert
+2. **Leads filtern & kaufen** — verfügbare Anfragen mit Vorschau (Region, Dachgröße, AI-Score) durchsuchen, per Stripe direkt kaufen
+3. **Direkt kontaktieren** — voller Datensatz mit Kontaktdaten und Dachanalyse erscheint im Dashboard, Sie kontaktieren den Interessenten persönlich
+
+## Was im Lead enthalten ist
+
+- Adresse (PLZ, Ort, Straße)
+- Ansprechpartner, Telefon, E-Mail
+- Dachfläche in m², Neigung, Ausrichtung
+- Geschätzte kWp-Kapazität, Sonnenstunden
+- AI-Realisierungs-Score (mindestens 50 für Listing-Aufnahme)
+
+## Qualität & Verifizierung
+
+- Plausibilitätsprüfung jeder Anfrage (Adressabgleich, Satellitenanalyse)
+- Mindestkriterien: Dachfläche ≥ 20 m², AI-Score ≥ 50
+- Jeder Lead wird in begrenzter Stückzahl verkauft — nach 3 Verkäufen aus dem Marktplatz entfernt
+- Ausdrückliche Einwilligung zur Weitergabe von jeder anfragenden Partei
+
+## Preise
+
+Pay-per-Lead, kein Abo, keine Mindestabnahme. Preis pro Lead wird je nach Region und Dachgröße transparent vor dem Kauf angezeigt. Zahlung über Stripe.
+
+## Lead-Herkunft
+
+Die Anfragen werden überwiegend über die Schwesterseite [Dachpacht Direkt](https://dachpacht-direkt.de) gewonnen — Eigentümer von Gewerbedächern, die ihr Dach für PV-Anlagen vermieten möchten.
+
+## Schlüssel-Seiten
+
+- [Startseite — Marktplatz-Übersicht](https://solar-match.de/)
+- [Impressum](https://solar-match.de/impressum)
+- [Datenschutzerklärung](https://solar-match.de/datenschutz)
+- [Login & Dashboard](https://app.solar-match.de)
+
+## Schwestermarken (selber Betreiber)
+
+- [Solar Match Widget](https://www.solaranalysetool.com) — Analyse-Iframe für die eigene Installateurs-Website
+- [Dachpacht Direkt](https://dachpacht-direkt.de) — eigene Marke für Dacheigentümer
+
+## Anbieter
+
+CegTec GmbH, Immenhof 15, 22087 Hamburg, Deutschland · HRB 184866 (AG Hamburg) · USt-ID DE366099274 · Geschäftsführer: Luca Ceglie · Kontakt: moin@dachpacht-direkt.de · +49 40 74304626

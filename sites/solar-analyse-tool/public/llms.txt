@@ -1,0 +1,43 @@
+# Solar Match Widget
+
+> White-label Solar-Analyse-Widget für PV-Unternehmen und Solarinstallateure in Deutschland. Installateure betten einen Iframe auf ihrer Website ein — Endkunden geben ihre Adresse ein und erhalten eine KI-gestützte Dachanalyse + PDF-Report. Kontaktdaten landen direkt im Lead-Dashboard des Installateurs.
+
+Solar Match Widget ist ein Produkt der Marke **Solar Match** (Betreiber: CegTec GmbH, Hamburg). Solar Match liefert PV-Unternehmen Solar-Leads auf zwei Wegen: über ein selbst eingebettetes Widget (dieses Produkt) oder über den [Solar Match Marktplatz](https://solar-match.de), auf dem bereits qualifizierte Anfragen pro Stück gekauft werden können.
+
+## Zielgruppe (ICP)
+
+- PV-Installateure und Solarbetriebe in DACH mit eigener Website
+- Wer eigenen Traffic mitbringt, aber dessen Conversion durch eine Dach-Erstanalyse steigern will
+- Wer eine White-Label-Lösung in der eigenen Corporate Identity statt eines Drittanbieter-Tools möchte
+
+## Produkt-Funktionen
+
+- **Widget-Integration:** Iframe-Code kopieren und einbetten — in unter 5 Minuten live
+- **Eigenes Branding (Pro):** Logo, Farben, Unternehmensname; kein Solar-Match-Badge sichtbar
+- **Lead-Dashboard:** Anfragen mit Kontaktdaten, Adresse und Dachdaten zentral einsehbar und exportierbar (CSV)
+- **KI-Dach-Analyse & PDF:** automatisch generierter Analyse-PDF in der CI des Installateurs
+- **Satelliten-Dachanalyse:** Dachfläche, Neigung, Ausrichtung, Sonnenstunden — für jede Adresse in Deutschland
+
+## Preise
+
+| Plan | Preis | Inhalt |
+|---|---|---|
+| Free | €0 | 1 Formular, 5 Leads/Monat, Satellitenanalyse, Lead-Dashboard, Solar-Match-Badge sichtbar |
+| Pro | €149/Monat | Unbegrenzte Formulare und Leads, eigenes Branding, KI-Dach-Analyse, PDF-Report, CSV-Export, Prioritäts-Support, kein Badge |
+
+Keine Kreditkarte für den Free-Plan, jederzeit kündbar.
+
+## Schlüssel-Seiten
+
+- [Startseite — Produktübersicht und Preise](https://www.solaranalysetool.com/)
+- [Impressum](https://www.solaranalysetool.com/impressum)
+- [Datenschutzerklärung](https://www.solaranalysetool.com/datenschutz)
+
+## Schwestermarken (selber Betreiber)
+
+- [Solar Match Marktplatz](https://solar-match.de) — fertig qualifizierte Solar-Leads pro Stück kaufen, kein eigenes Widget nötig
+- [Dachpacht Direkt](https://dachpacht-direkt.de) — eigene Marke für Eigentümer, die ihre Dachfläche vermieten möchten (speist den Lead-Pool von Solar Match Marktplatz)
+
+## Anbieter
+
+CegTec GmbH, Immenhof 15, 22087 Hamburg, Deutschland · HRB 184866 (AG Hamburg) · USt-ID DE366099274 · Geschäftsführer: Luca Ceglie · Kontakt: moin@dachpacht-direkt.de · +49 40 74304626

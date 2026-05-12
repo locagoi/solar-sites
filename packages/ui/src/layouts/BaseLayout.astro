@@ -1,0 +1,108 @@
+---
+import type { Brand } from "../brand";
+import "@solar/ui/styles/tokens.css";
+
+export interface Props {
+  brand: Brand;
+  title: string;
+  description: string;
+  /** Path relative to site root, e.g. "/preise". Used for canonical. */
+  path?: string;
+  /** OG image absolute URL or path under public/. Defaults to `/og.jpg`. */
+  ogImage?: string;
+  /** Additional structured data emitted as a separate <script type="application/ld+json"> */
+  jsonLd?: unknown[];
+  /** Set to true on legal/utility pages we don't want indexed. */
+  noindex?: boolean;
+}
+
+const { brand, title, description, path = "/", ogImage = "/og.jpg", jsonLd = [], noindex = false } = Astro.props;
+const siteUrl = `https://${brand.domain}`;
+const canonical = `${siteUrl}${path}`;
+const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
+
+// Always emit Organization JSON-LD for trust signals + agent ingestion
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: brand.legalEntity.name,
+  url: siteUrl,
+  logo: `${siteUrl}/solar-logo.svg`,
+  email: brand.legalEntity.email,
+  telephone: brand.legalEntity.phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: brand.legalEntity.street,
+    addressLocality: brand.legalEntity.locality,
+    postalCode: brand.legalEntity.postalCode,
+    addressCountry: brand.legalEntity.country,
+  },
+  vatID: brand.legalEntity.vatId,
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  url: siteUrl,
+  name: brand.name,
+  inLanguage: "de-DE",
+};
+
+const allJsonLd = [organization, website, ...jsonLd];
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {!noindex && <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />}
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content={brand.name} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="alternate" type="application/ld+json" href="/llms.txt" title="LLM-readable site summary" />
+
+    {allJsonLd.map((data) => (
+      <script type="application/ld+json" set:html={JSON.stringify(data)} />
+    ))}
+
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-[color:var(--color-background)] text-[color:var(--color-foreground)] antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-[color:var(--color-primary)] focus:px-4 focus:py-2 focus:text-white"
+    >
+      Zum Hauptinhalt springen
+    </a>
+
+    <slot />
+  </body>
+</html>

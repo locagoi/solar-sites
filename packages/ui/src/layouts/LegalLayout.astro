@@ -1,0 +1,55 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import type { Brand } from "../brand";
+
+export interface Props {
+  brand: Brand;
+  title: string;
+  description: string;
+  path: string;
+  navLinks?: Array<{ label: string; href: string }>;
+  footerLinks?: Array<{ label: string; href: string; external?: boolean }>;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+}
+
+const { brand, title, description, path, navLinks = [], footerLinks = [], primaryCta, secondaryCta } = Astro.props;
+---
+
+<BaseLayout brand={brand} title={title} description={description} path={path} noindex>
+  <Navbar brand={brand} links={navLinks} primaryCta={primaryCta} secondaryCta={secondaryCta} />
+
+  <main id="main" class="mx-auto max-w-3xl px-6 py-14 md:py-20">
+    <a
+      href="/"
+      class="mb-8 inline-flex items-center gap-2 text-sm text-[color:var(--color-muted-foreground)] transition-colors hover:text-[color:var(--color-foreground)]"
+    >
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12 19 5 12 12 5" />
+      </svg>
+      Zurück
+    </a>
+
+    <article class="prose prose-slate max-w-none">
+      <slot />
+    </article>
+  </main>
+
+  <Footer brand={brand} links={footerLinks} />
+</BaseLayout>
+
+<style is:global>
+  .prose h1 { font-size: 1.875rem; font-weight: 700; color: var(--color-foreground); margin-bottom: 0.5rem; line-height: 1.2; }
+  .prose h2 { font-size: 1.25rem; font-weight: 600; color: var(--color-foreground); margin-top: 2rem; margin-bottom: 0.75rem; }
+  .prose h3 { font-size: 1.125rem; font-weight: 600; color: var(--color-foreground); margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  .prose p { color: var(--color-muted-foreground); line-height: 1.7; margin-bottom: 1rem; }
+  .prose a { color: var(--color-primary); text-decoration: underline; }
+  .prose a:hover { color: var(--color-accent); }
+  .prose ul { list-style-type: disc; padding-left: 1.5rem; color: var(--color-muted-foreground); margin-bottom: 1rem; }
+  .prose ul li { margin-bottom: 0.25rem; }
+  .prose address { font-style: normal; color: var(--color-muted-foreground); line-height: 1.7; }
+  .prose strong { color: var(--color-foreground); font-weight: 600; }
+</style>

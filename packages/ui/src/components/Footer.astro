@@ -1,0 +1,43 @@
+---
+import type { Brand } from "../brand";
+
+export interface Props {
+  brand: Brand;
+  /** Nav links shown in the footer column */
+  links?: Array<{ label: string; href: string; external?: boolean }>;
+}
+
+const { brand, links = [] } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-[color:var(--color-primary-dark)] py-10 text-white/70" aria-label="Footer">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
+    <div class="flex items-center gap-2">
+      <img src="/solar-logo.svg" alt="" width="24" height="24" class="h-6 w-6" />
+      <span class="font-semibold text-white">{brand.name}</span>
+      {brand.subtitle && (
+        <span class="text-sm text-white/50">/ {brand.subtitle}</span>
+      )}
+    </div>
+
+    {links.length > 0 && (
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm" aria-label="Footer-Navigation">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class="transition-colors hover:text-white"
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    )}
+
+    <p class="text-sm">
+      &copy; {year} {brand.legalEntity.name}
+    </p>
+  </div>
+</footer>
