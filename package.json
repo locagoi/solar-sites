@@ -2,15 +2,13 @@
   "name": "solar-sites",
   "version": "0.1.0",
   "private": true,
-  "description": "CegTec solar properties — Solar Match (solar-match.de + solaranalysetool.com) and Dachpacht Direkt (dachpacht-direkt.de). Agent-friendly Astro monorepo.",
+  "description": "CegTec solar properties — Solar Match (solar-match.de + solaranalysetool.com). Agent-friendly Astro monorepo.",
   "workspaces": ["packages/*", "sites/*"],
   "scripts": {
     "dev:sm": "npm run dev --workspace=sites/solar-match",
     "dev:sat": "npm run dev --workspace=sites/solar-analyse-tool",
-    "dev:dd": "npm run dev --workspace=sites/dachpacht-direkt",
     "build:sm": "npm run build --workspace=sites/solar-match",
     "build:sat": "npm run build --workspace=sites/solar-analyse-tool",
-    "build:dd": "npm run build --workspace=sites/dachpacht-direkt",
-    "build": "npm run build:sm && npm run build:sat && npm run build:dd"
+    "build": "npm run build:sm && npm run build:sat"
   }
 }
